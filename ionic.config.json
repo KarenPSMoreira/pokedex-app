@@ -1,0 +1,7 @@
+{
+  "name": "ionic-tarefas-2023",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

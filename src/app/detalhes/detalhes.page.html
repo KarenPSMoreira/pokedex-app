@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-toolbar color="danger">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>#{{pokemon?.id}} {{pokemon?.name | uppercase}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div *ngIf="pokemon?.id">
+    <!-- carrossel -->
+    <swiper-container class="mySwiper" space-between="30" pagination="true" pagination-clickable="true">
+      <swiper-slide *ngFor="let img of pokemon.images">
+        <img [src]="img" class="card-img-top">
+      </swiper-slide>
+    </swiper-container>
+
+    <ion-card>
+      <ion-card-header color="danger">
+        <ion-card-title class="ion-text-captalize">#{{pokemon.id}} {{pokemon.name}}
+          <ion-chip color="warning" *ngFor="let item of pokemon.types">
+            <ion-label>{{item.type.name}}</ion-label>
+          </ion-chip>
+        </ion-card-title>
+        <ion-card-subtitle class="ion-text-captalize">{{pokemon.weight}}</ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-list lines="full">
+          <ion-item>
+            <ion-label text-wrap><b>Abilities: </b> <span *ngFor="let skill of pokemon.abilities; let isLast = last"
+              class="ion-text-captalize">
+              {{skill.ability.name}}{{!isLast? ',' : ''}}
+            </span></ion-label>
+          </ion-item>
+
+          <ion-item *ngFor="let data of pokemon.stats" class="ion-text-capitalize">
+            <ion-label slot="start"><b>{{data.stat.name}}: </b></ion-label>
+            <ion-label slot="end">{{data.base_stat}}</ion-label>
+          </ion-item>
+          
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+
+  </div>
+
+</ion-content>
